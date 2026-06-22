@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {getProducts} from "../../services/api.js";
 import SearchBar from "../../components/SearchBar/SearchBar.jsx";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
+import './ProductListPage.css';
 
 function ProductListPage() {
     const [products, setProducts] = useState([]);
