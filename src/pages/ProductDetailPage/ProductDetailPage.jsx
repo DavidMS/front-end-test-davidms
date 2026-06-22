@@ -6,7 +6,7 @@ import {addToCart, getProduct} from "../../services/api.js";
 
 function ProductDetailPage() {
     const { id } = useParams();
-    const { updateCartCount } = useCart();
+    const { cartCount, updateCartCount } = useCart();
 
     const [product, setProduct] = useState();
     const [loading, setLoading] = useState(true);
@@ -30,7 +30,7 @@ function ProductDetailPage() {
     const handleAddToCart = () => {
         setAdding(true);
         addToCart({ id, colorCode: selectedColor, storageCode: selectedStorage })
-            .then((data) => updateCartCount(data.count))
+            .then(() => updateCartCount(cartCount + 1))
             .finally(() => setAdding(false))
     }
 
@@ -46,7 +46,7 @@ function ProductDetailPage() {
                     <img src={product.imgUrl} alt={`${product.brand} ${product.model}`} />
                 </div>
 
-                <div className="product-detail-page__info">
+                <div>
                     <div className="description">
                         <h1>{product.brand} {product.model}</h1>
                         <dl>
@@ -63,9 +63,9 @@ function ProductDetailPage() {
                             <dt>Batería</dt>
                             <dd>{product.battery}</dd>
                             <dt>Cámara principal</dt>
-                            <dd>{product.primaryCamera?.join(', ')}</dd>
+                            <dd>{[].concat(product.primaryCamera).join(', ')}</dd>
                             <dt>Cámara secundaria</dt>
-                            <dd>{product.secondaryCmera?.join(', ')}</dd>
+                            <dd>{[].concat(product.secondaryCmera).join(', ')}</dd>
                             <dt>Dimensiones</dt>
                             <dd>{product.dimentions}</dd>
                             <dt>Peso</dt>

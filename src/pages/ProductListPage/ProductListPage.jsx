@@ -27,11 +27,11 @@ function ProductListPage() {
 
     return (
         <div className="product-list-page">
-            <div className="products-list-page__toolbar">
+            <div className="product-list-page__toolbar">
                 <span>{filteredProducts.length} resultados</span>
                 <SearchBar value={searchTerm} onChange={setSearchTerm} />
             </div>
-            <div className="products-list-page__grid">
+            <div className="product-list-page__grid">
                 {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
